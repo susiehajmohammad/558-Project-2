@@ -141,7 +141,7 @@ ui <- fluidPage(
                       column(4, tags$img(src="reptile.png", width="100%", style="border-radius:12px;box-shadow:0 0 6px gray;"))
                     ),
                     br(),
-                    tags$ul(tags$li("Inspired by Jackie, Luca, Olive"))
+                    tags$ul(tags$li("Inspired by Jackie, Luca, and Olive"))
              )
            )
   ),
@@ -248,7 +248,7 @@ ui <- fluidPage(
                     
       p("All data is retrieved from a public API on plant toxicity called plantsm.art. Using this app, you can filter plants by toxicity, species, and symptoms, and compare toxic plant families visually."),
                     
-      p("This was built using R and the Shiny package as well!")),
+      p("This was built using R and the Shiny package!")),
       column(4,
       h4("Author"),
       p("Susan Hajmohammad"),
