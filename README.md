@@ -8,8 +8,8 @@
 #Packages needed: 
 install.packages(c("shiny", "dplyr", "purrr", "ggplot2", "gganimate", "gifski", "tidyr", "stringr", "jsonlite"))
 
-# Link for app
-  - https://susiehajmohammad.github.io/558-Project-2/
+# Link for repo:
+  - https://github.com/susiehajmohammad/558-Project-2
 
 #Tabs: 
 
