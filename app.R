@@ -14,7 +14,6 @@ library(gganimate)
 library(gifski)
 library(tidyr)
 library(stringr)
-
 library(shinythemes)
 
 
@@ -325,7 +324,7 @@ server <- function(input, output, session) {
     #get list of all symptoms associated with selected animal
     syms <- get_available_symptoms_for_animal(input$toxic_animal, all_plants())
     #if there aren't any symptoms, display message
-    validate(need(length(syms)>0, "No symptom data."))
+    shiny::validate(need(length(syms)>0, "No symptom data."))
     #make checkbox selector for all the available symptoms per animal
     checkboxGroupInput("selected_symptoms", "Symptoms:", choices=syms)
   })
@@ -338,7 +337,7 @@ server <- function(input, output, session) {
       #count how many plants for each severity level
       count(severity_label, name="n")
     # if none for that animal display message
-    validate(need(nrow(df)>0, "No data."))
+    shiny::validate(need(nrow(df)>0, "No data."))
     #bar chart for display severity type counts
     ggplot(df, aes(severity_label, n)) +
       geom_col(fill="#B7410E") +
@@ -360,7 +359,7 @@ server <- function(input, output, session) {
     }
     
     #if there are no plants, display message
-    validate(need(nrow(df)>0, "No toxic plants match criteria."))
+    shiny::validate(need(nrow(df)>0, "No toxic plants match criteria."))
     #create an entry for each plant that meet criteria
     entries <- lapply(seq_len(nrow(df)), function(i) {
       #plant first image
@@ -390,7 +389,7 @@ server <- function(input, output, session) {
     df <- get_toxic_plants_for_animal(input$viz_animal, all_plants()) %>%
       count(family, name="plant_count") %>%
       arrange(desc(plant_count))
-    validate(need(nrow(df)>0, "No data."))
+    shiny::validate(need(nrow(df)>0, "No data."))
     #reorder so graph is by amount
     ggplot(df, aes(reorder(family, plant_count), plant_count)) +
       #color and horizontal
@@ -456,7 +455,7 @@ server <- function(input, output, session) {
       slice_head(n=10) %>%
       #convert to Title case 
       mutate(symptoms=str_to_title(symptoms))
-    validate(need(nrow(df)>0, "No data."))
+    shiny::validate(need(nrow(df)>0, "No data."))
     
     #bar chart with ggplot
     ggplot(df, aes(reorder(symptoms, n), n)) +
