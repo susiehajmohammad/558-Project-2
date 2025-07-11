@@ -5,7 +5,7 @@
 ##############################################
 # 0) Load packages 
 ##############################################
-
+library(jsonlite)
 library(shiny)
 library(dplyr)
 library(purrr)
@@ -14,7 +14,7 @@ library(gganimate)
 library(gifski)
 library(tidyr)
 library(stringr)
-library(jsonlite)
+
 library(shinythemes)
 
 
@@ -38,6 +38,9 @@ get_all_plants <- function() {
       severity_level = severity.level #numeric level
     )
 }
+
+plants <- get_all_plants()
+
 
 #get the whole list of animals function 
 get_available_animals <- function(plants = get_all_plants()) {
@@ -289,7 +292,7 @@ server <- function(input, output, session) {
     #make data frame of plants safe for that animal using function
     df <- get_safe_plants_for_animal(input$safe_animal, all_plants())
     #if output has no rows display message none found
-    validate(need(nrow(df)>0, "No safe plants found."))
+    shiny::validate(need(nrow(df)>0, "No safe plants found."))
     #loop through each row of safe plants and add to scrolling list
     #keep plant name, image and wiki link only
     entries <- lapply(seq_len(nrow(df)), function(i) {
